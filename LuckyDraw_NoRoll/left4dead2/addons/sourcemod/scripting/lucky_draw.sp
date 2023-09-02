@@ -577,17 +577,17 @@ public Action:Roll2(Client)
 		}
 		case 17:
 		{
-			Format(show, sizeof(show), "安慰獎");
+			Format(show, sizeof(show), "懲罰");
 			gain[Client]=6;
 		}
 		case 18:
 		{
-			Format(show, sizeof(show), "安慰獎");
+			Format(show, sizeof(show), "懲罰");
 			gain[Client]=6;
 		}
 		case 19:
 		{
-			Format(show, sizeof(show), "安慰獎");
+			Format(show, sizeof(show), "懲罰");
 			gain[Client]=6;
 		}
 		case 20:
