@@ -1,4 +1,4 @@
-﻿#pragma semicolon 1
+#pragma semicolon 1
 #include <sourcemod>
 #include <sdktools>
 #include <sdkhooks>
@@ -35,7 +35,7 @@ new Handle:timer_handle=INVALID_HANDLE;
 
 public OnPluginStart()
 {
-	RegConsoleCmd("sm_ldw",LDW);
+	RegConsoleCmd("sm_ldw",LDW2);
 	HookEvent("infected_death",		infected_death);
 	HookEvent("player_death",		player_death);
 	HookEvent("round_start", round_start);
@@ -185,6 +185,441 @@ public Action:Event_RoundEnd(Handle:event, String:event_name[], bool:dontBroadca
 		}
 	}
 }
+
+public Action:LDW2(Client, args)
+{
+	
+	// when input !ld
+	if(GetClientTeam(Client)==2)
+	{
+		//draw function
+		if(!rolled[Client])
+		{
+			if(L[Client] > 0)
+				{
+						//must
+					if(sift[Client])
+					{
+						sift_start1(Client);
+						sift_start2(Client);
+						sift_start3(Client);
+						sift_start4(Client);
+						sift_start5(Client);
+						sift_start6(Client);
+						sift[Client]=false;
+					}
+					//Award_List
+					//Award_List(Client);
+					//Start
+						
+					rolled[Client]=true;
+					//return to draw function
+					rolled[Client]=false;
+					sift[Client]=true;
+
+					// Award(Client);
+					
+					// for (new i = 1; i <= MaxClients; i++)
+					// {
+					// 	if(IsClientInGame(i))
+					// 	{
+					// 		if(GetClientTeam(i) == 2)
+					// 		{
+					// 			new MaxHP = GetEntProp(i, Prop_Data, "m_iMaxHealth");
+					// 			SetEntProp(i, Prop_Data, "m_iHealth", MaxHP);
+					// 		}
+					// 	}
+					// }
+
+					// PrintToChatAll(PH,Client);
+
+					// Format(hd, sizeof(hd), "所有倖存者加滿HP");
+					Roll2(Client); //rolling
+					decl String:ms[32];
+					decl String:hd[32];
+					if(gain[Client]==1)
+					{
+						if(prize1[Client]==1)
+						{
+							for (new i = 1; i <= MaxClients; i++)
+							{
+								if(IsClientInGame(i))
+								{
+									if(GetClientTeam(i) == 2)
+									{
+										new MaxHP = GetEntProp(i, Prop_Data, "m_iMaxHealth");
+										SetEntProp(i, Prop_Data, "m_iHealth", MaxHP);
+									}
+								}
+							}
+							Format(hd, sizeof(hd), "所有倖存者加滿HP");
+						} else if(prize1[Client]==2)
+						{
+							CheatCommand(Client, "ent_remove_all", "infected");
+							Format(hd, sizeof(hd), "清除所有小僵屍");
+						} else if(prize1[Client]==3)
+						{
+							SetEntProp(Client, Prop_Data, "m_takedamage", 0, 1);
+							Format(hd, sizeof(hd), "他自己進入無敵狀態");
+						} else if(prize1[Client]==4)
+						{
+							SetEntityGravity(Client, 0.1);
+							Format(hd, sizeof(hd), "他自己的重力降到最低");
+						} else if(prize1[Client]==5)
+						{
+							for (new i = 1; i <= MaxClients; i++)
+							{
+								if(IsClientInGame(i))
+								{
+									if(GetClientTeam(i) == 3)
+									{
+										ForcePlayerSuicide(i);
+									}
+								}
+							}
+							Format(hd, sizeof(hd), "處死所有特感");
+						}
+						Format(ms, sizeof(ms), "特等獎");
+						PrintToChatAll(QT, Client, ms, hd);
+						PrintToChatAll(QT, Client);
+						EmitSoundToClient(Client, "level/gnomeftw.wav");
+						AttachParticle(Client, "achieved", 3.0);
+					}
+					if(gain[Client] == 2)
+					{
+						if(prize2[Client]==1)
+						{
+							CheatCommand(Client, "give", "rifle");
+							Format(hd, sizeof(hd), "獲得M16");
+						} else if(prize2[Client]==2)
+						{
+							CheatCommand(Client, "give", "rifle_ak47");
+							Format(hd, sizeof(hd), "獲得AK47");
+						} else if(prize2[Client]==3)
+						{
+							CheatCommand(Client, "give", "sniper_military");
+							Format(hd, sizeof(hd), "獲得大型連狙");
+						} else if(prize2[Client]==4)
+						{
+							CheatCommand(Client, "give", "hunting_rifle");
+							Format(hd, sizeof(hd), "獲得小型連狙");
+						} else if(prize2[Client]==5)
+						{
+							CheatCommand(Client, "give", "autoshotgun");
+							Format(hd, sizeof(hd), "獲得自動散彈槍");
+						} else if(prize2[Client]==6)
+						{
+							CheatCommand(Client, "give", "shotgun_spas");
+							Format(hd, sizeof(hd), "獲得spas戰鬥散彈槍");
+						} else if(prize2[Client]==7)
+						{
+							CheatCommand(Client, "give", "shotgun_chrome");
+							Format(hd, sizeof(hd), "獲得鉻合金散彈槍");
+						} else if(prize2[Client]==8)
+						{
+							CheatCommand(Client, "give", "pumpshotgun");
+							Format(hd, sizeof(hd), "獲得泵動式散彈槍");
+						} else if(prize2[Client]==9)
+						{
+							CheatCommand(Client, "give", " rifle_desert");
+							Format(hd, sizeof(hd), "獲得突擊步槍");
+						} else if(prize2[Client]==10)
+						{
+							CheatCommand(Client, "give", "grenade_launcher");
+							Format(hd, sizeof(hd), "獲得榴彈槍");
+						} else if(prize2[Client]==11)
+						{
+							CheatCommand(Client, "give", "smg");
+							Format(hd, sizeof(hd), "獲得烏茲小衝鋒");
+						} else if(prize2[Client]==12)
+						{
+							CheatCommand(Client, "give", "smg_silenced");
+							Format(hd, sizeof(hd), "獲得消音小衝鋒");
+						}
+						Format(ms, sizeof(ms), "一等獎");
+						PrintToChat(Client, PIE, ms, hd);
+						EmitSoundToClient(Client, "level/gnomeftw.wav");
+						AttachParticle(Client, "achieved", 3.0);
+					}
+					
+					if(gain[Client]==3)
+					{
+						if(prize3[Client]==1)
+						{
+							CheatCommand(Client, "give", "first_aid_kit");
+							Format(hd, sizeof(hd), "獲得醫藥包");
+						} else if(prize3[Client]==2)
+						{
+							CheatCommand(Client, "give", "pain_pills");
+							Format(hd, sizeof(hd), "獲得止痛藥");
+						} else if(prize3[Client]==3)
+						{
+							CheatCommand(Client, "give", "adrenaline");
+							Format(hd, sizeof(hd), "獲得腎上腺素");
+						} else if(prize3[Client]==4)
+						{
+							CheatCommand(Client, "give", "defibrillator");
+							Format(hd, sizeof(hd), "獲得電擊器");
+						}
+						Format(ms, sizeof(ms), "二等獎");
+						PrintToChat(Client, PIE, ms, hd);
+						EmitSoundToClient(Client, "level/gnomeftw.wav");
+						AttachParticle(Client, "achieved", 3.0);
+					}
+					
+					if(gain[Client]==4)
+					{
+						if(prize4[Client]==1)
+						{
+							CheatCommand(Client, "give", "pistol_magnum");
+							Format(hd, sizeof(hd), "獲得馬格南手槍");
+						} else if(prize4[Client]==2)
+						{
+							CheatCommand(Client, "give", "baseball_bat");
+							Format(hd, sizeof(hd), "獲得棒球棒");
+						} else if(prize4[Client]==3)
+						{
+							CheatCommand(Client, "give", "pipe_bomb");
+							Format(hd, sizeof(hd), "獲得土制炸彈");
+						} else if(prize4[Client]==4)
+						{
+							CheatCommand(Client, "give", "molotov");
+							Format(hd, sizeof(hd), "獲得燃燒瓶");
+						} else if(prize4[Client]==5)
+						{
+							CheatCommand(Client, "give", "vomitjar");
+							Format(hd, sizeof(hd), "獲得膽汁炸彈");
+						} else if(prize4[Client]==6)
+						{
+							CheatCommand(Client, "give", "rifle_m60");
+							Format(hd, sizeof(hd), "獲得M60");
+						}
+						Format(ms, sizeof(ms), "三等獎");
+						PrintToChat(Client, PIE, ms, hd);
+						EmitSoundToClient(Client, "level/gnomeftw.wav");
+						AttachParticle(Client, "achieved", 3.0);
+					}
+					
+					if(gain[Client]==5)
+					{
+						if(prize5[Client]==1)
+						{
+							CheatCommand(Client, "give", "upgradepack_incendiary");
+							Format(hd, sizeof(hd), "獲得燃燒彈盒");
+						} else if(prize5[Client]==2)
+						{
+							CheatCommand(Client, "give", "upgradepack_explosive");
+							Format(hd, sizeof(hd), "獲得高爆彈盒");
+						} else if(prize5[Client]==3)
+						{
+							CheatCommand(Client, "give", "propanetank");
+							Format(hd, sizeof(hd), "獲得煤氣罐");
+						} else if(prize5[Client]==4)
+						{
+							CheatCommand(Client, "give", "gascan");
+							Format(hd, sizeof(hd), "獲得汽油桶");
+						} else if(prize5[Client]==5)
+						{
+							CheatCommand(Client, "give", "oxygentank");
+							Format(hd, sizeof(hd), "獲得氧氣罐");
+						}
+						Format(ms, sizeof(ms), "安慰獎");
+						PrintToChat(Client, PIE, ms, hd);
+						EmitSoundToClient(Client, "level/gnomeftw.wav");
+						AttachParticle(Client, "achieved", 3.0);
+					}
+					
+					if(gain[Client]==6)
+					{
+						if(prize6[Client]==1)
+						{
+							CheatCommand(Client, "z_spawn", "witch");
+							CheatCommand(Client, "z_spawn", "witch");
+							Format(hd, sizeof(hd), "召喚兩隻Witch");
+						} else if(prize6[Client]==2)
+						{
+							CheatCommand(Client, "z_spawn", "tank");
+							Format(hd, sizeof(hd), "召喚一隻Tank");
+						} else if(prize6[Client]==3)
+						{
+							//ForcePlayerSuicide(Client);
+							//CheatCommand(Client, "fire");
+							// ServerCommand("sm_burn \"%N\" \"%d\"", Client, 10);
+							CheatCommand(Client, "z_spawn", "jockey");
+							CheatCommand(Client, "z_spawn", "boomer");
+							CheatCommand(Client, "z_spawn", "hunter");
+							CheatCommand(Client, "z_spawn", "spitter");
+							CheatCommand(Client, "z_spawn", "smoker");
+							CheatCommand(Client, "z_spawn", "charger");
+							CheatCommand(Client, "z_spawn", "tank");
+							CheatCommand(Client, "z_spawn", "witch");
+							CheatCommand(Client, "z_spawn", "mob");
+							Format(hd, sizeof(hd), "九蓮寶燈!!!");
+						} else if(prize6[Client]==4)
+						{
+							CheatCommand(Client, "z_spawn", "boomer");
+							CheatCommand(Client, "z_spawn", "boomer");
+							CheatCommand(Client, "z_spawn", "boomer");
+							
+							CheatCommand(Client, "z_spawn", "mob");
+							CheatCommand(Client, "z_spawn", "mob");
+							Format(hd, sizeof(hd), "召喚屍潮!");
+						} else if(prize6[Client]==5)
+						{
+							//CheatCommand(Client, "warp_to_start_area");
+							ServerCommand("sm_freeze \"%N\" \"%d\"", Client, 10);
+							Format(hd, sizeof(hd), "冰凍十秒鐘");
+							//Format(hd, sizeof(hd), "從頭再來，傳送至起點！");
+						}
+						Format(ms, sizeof(ms), "懲罰");
+						PrintToChatAll(PH, Client, ms, hd);
+						EmitSoundToClient(Client, "npc/moustachio/strengthattract05.wav");
+					}
+
+					L[Client]-=1;
+				} 
+					else
+					{
+						PrintToChat(Client, "\x04Sorry,你沒有抽獎機會!");
+					}
+		}
+		else
+		{
+			//Stop
+			rolled[Client]=false;
+			sift[Client]=true;
+			//Award(Client);
+		}
+	} else
+	{
+		PrintToChat(Client, "此功能只有倖存者可以使用!");
+	}
+
+	
+
+}
+
+public Action:Roll2(Client)
+{
+	decl String:show[32];
+	new extract = GetRandomInt(1, 20);
+	switch (extract)
+	{
+		case 1:
+		{
+			Format(show, sizeof(show), "特等獎");
+			gain[Client]=1;
+		}
+		case 2:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 3:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 4:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 5:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 6:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=4;
+		}
+		case 7:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 8:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 9:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 10:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=5;
+		}
+		case 11:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=5;
+		}
+		case 12:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 13:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 14:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 15:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 16:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=6;
+		}
+		case 17:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=6;
+		}
+		case 18:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=6;
+		}
+		case 19:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=6;
+		}
+		case 20:
+		{
+			Format(show, sizeof(show), "懲罰");
+			gain[Client]=6;
+		}
+	}
+	
+	EmitSoundToClient(Client, "ui/littlereward.wav");
+	return extract;
+}
+
+
+
+
+
+
+
+
+
+
 
 public Action:LDW(Client, args)
 {
@@ -704,7 +1139,8 @@ public Action:Award(Client)//** 發放獎品 **//
 		} else if(prize6[Client]==5)
 		{
 			ServerCommand("sm_freeze \"%N\" \"%d\"", Client, 10);
-			Format(hd, sizeof(hd), "被冰凍10秒");
+			//CheatCommand(Client, warp_to_start_area);
+			Format(hd, sizeof(hd), "從頭再來，傳送至起點！");
 		}
 		Format(ms, sizeof(ms), "懲罰");
 		PrintToChatAll(PH, Client, ms, hd);
@@ -1079,15 +1515,30 @@ public Action:Award_List(Client)
 	Format(line, sizeof(line), "返回");
 	DrawPanelItem(menu, line);
 	DrawPanelItem(menu, "Exit", ITEMDRAW_DISABLED);
-	SendPanelToClient(menu, Client, Start, MENU_TIME_FOREVER);
+	SendPanelToClient(menu, Client, Start, 3); //edit
+	//Start2(Client);
 	CloseHandle(menu);
 }
 	
+public Start2(Client)
+{
+	rolled[Client]=true;
+	draw_function(Client);
+	L[Client]-=1;
+}
+
 public Start(Handle:menu, MenuAction:action, Client, param)
 {
 	if (action == MenuAction_Select) {
 		switch (param)
 		{
+			case -5: 
+			{
+				StopTime[Client] = CreateTimer(0.04, Roll, Client, TIMER_REPEAT);
+				rolled[Client]=true;
+				draw_function(Client);
+				L[Client]-=1;
+			}
 			case 1: 
 			{
 				StopTime[Client] = CreateTimer(0.04, Roll, Client, TIMER_REPEAT);
@@ -1137,7 +1588,7 @@ public Action:Roll(Handle:timer, any:Client)
 		case 6:
 		{
 			Format(show, sizeof(show), "二等獎");
-			gain[Client]=3;
+			gain[Client]=4;
 		}
 		case 7:
 		{
@@ -1157,12 +1608,12 @@ public Action:Roll(Handle:timer, any:Client)
 		case 10:
 		{
 			Format(show, sizeof(show), "三等獎");
-			gain[Client]=4;
+			gain[Client]=5;
 		}
 		case 11:
 		{
 			Format(show, sizeof(show), "三等獎");
-			gain[Client]=4;
+			gain[Client]=5;
 		}
 		case 12:
 		{
@@ -1177,32 +1628,32 @@ public Action:Roll(Handle:timer, any:Client)
 		case 14:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=5;
+			gain[Client]=6;
 		}
 		case 15:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=5;
+			gain[Client]=6;
 		}
 		case 16:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=5;
+			gain[Client]=6;
 		}
 		case 17:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=5;
+			gain[Client]=6;
 		}
 		case 18:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=5;
+			gain[Client]=6;
 		}
 		case 19:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=5;
+			gain[Client]=6;
 		}
 		case 20:
 		{
@@ -1348,7 +1799,7 @@ public Action:LoopParticleEffect(Handle:timer, Handle:pack)
 
 public Action:Msg(Handle:timer, any:data)
 {
-	PrintToChatAll("\x03想試試你的手氣嗎? 聊天框輸入 \x04!ldw \x03打開 \x01【\x04抽獎系統\x01】");
+	PrintToChatAll("\x03想試試你的臭手氣嗎? 聊天框輸入 \x04!ldw \x03打開 \x01【\x04抽獎系統\x01】");
 
 }
 
