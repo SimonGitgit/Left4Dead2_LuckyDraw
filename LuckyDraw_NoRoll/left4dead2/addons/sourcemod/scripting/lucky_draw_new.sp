@@ -502,7 +502,7 @@ public Action:LDW2(Client, args)
 public Action:Roll2(Client)
 {
 	decl String:show[32];
-	new extract = GetRandomInt(1, 20);
+	new extract = GetRandomInt(1, 100);
 	switch (extract)
 	{
 		case 1:
@@ -553,12 +553,12 @@ public Action:Roll2(Client)
 		case 10:
 		{
 			Format(show, sizeof(show), "三等獎");
-			gain[Client]=5;
+			gain[Client]=4;
 		}
 		case 11:
 		{
 			Format(show, sizeof(show), "三等獎");
-			gain[Client]=5;
+			gain[Client]=4;
 		}
 		case 12:
 		{
@@ -583,24 +583,424 @@ public Action:Roll2(Client)
 		case 16:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=6;
+			gain[Client]=5;
 		}
 		case 17:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=6;
+			gain[Client]=5;
 		}
 		case 18:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=6;
+			gain[Client]=5;
 		}
 		case 19:
 		{
 			Format(show, sizeof(show), "安慰獎");
-			gain[Client]=6;
+			gain[Client]=5;
 		}
 		case 20:
+		{
+			Format(show, sizeof(show), "懲罰");
+			gain[Client]=6;
+		}
+		case 21:
+		{
+			Format(show, sizeof(show), "特等獎");
+			gain[Client]=1;
+		}
+		case 22:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 23:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 24:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 25:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 26:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 27:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 28:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 29:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 30:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 31:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 32:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 33:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 34:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 35:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 36:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 37:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 38:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 39:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 40:
+		{
+			Format(show, sizeof(show), "懲罰");
+			gain[Client]=6;
+		}
+		case 41:
+		{
+			Format(show, sizeof(show), "特等獎");
+			gain[Client]=1;
+		}
+		case 42:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 43:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 44:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 45:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 46:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 47:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 48:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 49:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 50:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 51:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 52:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 53:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 54:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 55:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 56:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 57:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 58:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 59:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 60:
+		{
+			Format(show, sizeof(show), "懲罰");
+			gain[Client]=6;
+		}
+		case 61:
+		{
+			Format(show, sizeof(show), "特等獎");
+			gain[Client]=1;
+		}
+		case 62:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 63:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 64:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 65:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 66:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 67:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 68:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 69:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 70:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 71:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 72:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 73:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 74:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 75:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 76:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 77:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 78:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 79:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 80:
+		{
+			Format(show, sizeof(show), "懲罰");
+			gain[Client]=6;
+		}
+		case 81:
+		{
+			Format(show, sizeof(show), "特等獎");
+			gain[Client]=1;
+		}
+		case 82:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 83:
+		{
+			Format(show, sizeof(show), "一等獎");
+			gain[Client]=2;
+		}
+		case 84:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 85:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 86:
+		{
+			Format(show, sizeof(show), "二等獎");
+			gain[Client]=3;
+		}
+		case 87:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 88:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 89:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 90:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 91:
+		{
+			Format(show, sizeof(show), "三等獎");
+			gain[Client]=4;
+		}
+		case 92:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 93:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 94:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 95:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 96:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 97:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 98:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 99:
+		{
+			Format(show, sizeof(show), "安慰獎");
+			gain[Client]=5;
+		}
+		case 100:
 		{
 			Format(show, sizeof(show), "懲罰");
 			gain[Client]=6;
