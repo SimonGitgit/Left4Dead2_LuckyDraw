@@ -281,7 +281,7 @@ public Action:LDW2(Client, args)
 						}
 						Format(ms, sizeof(ms), "特等獎");
 						PrintToChatAll(QT, Client, ms, hd);
-						PrintToChatAll(QT, Client);
+						//PrintToChatAll(QT, Client);
 						EmitSoundToClient(Client, "level/gnomeftw.wav");
 						AttachParticle(Client, "achieved", 3.0);
 					}
